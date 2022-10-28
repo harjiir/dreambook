@@ -4,7 +4,9 @@
 	<meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html; charset=UTF-8" />
 	<title>DreamBook - Keywords</title>
 	
-	<link href="styles/demo.css" rel="stylesheet" type="text/css">
+	<!-- My own css file -->
+	<link rel="stylesheet" href="/css/keywords.css" type="text/css">
+	
 	<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
 				integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -18,22 +20,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
 				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 					crossorigin="anonymous"></script>
-	<style>
-		.btn{margin:10px; background-color:#545AA7; color:white; border:none;}
-		.btn:hover{background-color:#545AA7;}
-	
-		.float-child.form{padding: 20px; background-color: #F8F8F8;}
-		.form-group{width:100%;}
-		label{font-weight:bold; color:#545AA7;}
-		
-		.searchbar{margin:10px; width:300px;}
-		.keyword{font-weight:bold}
-		.tableHeader{background-color:#545AA7; color:white;}
-		.editB, .deleteB{cursor:pointer; border: none; color: white; border-radius:5px; padding: 4px 8px;}
-		.editB{background-color:orange;}
-		.deleteB{background-color:red; margin-right:20px;}
-		.editB:hover, .deleteB:hover{text-decoration:none; color:white;}
-	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -56,17 +42,18 @@
 	        <a class="nav-link" href="/dreams">Dreams</a>
 	      </li>
 	    </ul>
+	    <p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
 	    <div class="signIn" sec:authorize="!isAuthenticated()">
-			<a href="/login" type="submit" class="btn btn-secondary">Sign In</a>
+			<a href="/login" type="submit" class="btn btn-secondary signIn">Sign In</a>
 		</div>
 	    <div sec:authorize="isAuthenticated()">
 	      	<form th:action="@{/logout}" method="post">
-				<button type="submit" class="btn btn-secondary" style="background-color: grey">Sign Out</button>
+				<button type="submit" class="btn btn-secondary signOut">Sign Out</button>
 			</form>
 		</div>
 	  </div>
 	</nav>
-	<button sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#KeywordForm" aria-expanded="false" aria-controls="collapseExample">
+	<button  sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#KeywordForm" aria-expanded="false" aria-controls="collapseExample">
 	  + Add new Keyword
 	</button>
 	<div class="collapse" id="KeywordForm">
@@ -76,7 +63,7 @@
 				<div class="form-group">
 					<div class="form-group col-md-4">
 						<label>Keyword</label>
-						<input class="form-control" type="text" id="keyName" required th:field="*{keyName}">
+						<input class="form-control" type="text" id="keyName" required th:field="*{keyName}" placeholder="Key name...">
 						<div class="valid-feedback">Valid</div>
     					<div class="invalid-feedback">Please insert new keyword.</div>
 					</div>
@@ -87,7 +74,7 @@
     					<div class="invalid-feedback">Please describe the word.</div>
 					</div>
 				</div>
-				<input type="submit" class="btn" value="Save"></input>
+				<input type="submit" class="btn save" value="Save"></input>
 			</form>
 		</div>
 	  </div>
@@ -108,13 +95,13 @@
 				 </thead>
 				 <tbody>
 				   <tr th:each = "keyword : ${keywords}">
-				     <td  class="keyword" th:text="${keyword.keyName}"></td>
+				     <td  class="keyFormat" th:text="${keyword.keyName}"></td>
 				     <td th:text="${keyword. keyDescription}"></td>
 				     <td sec:authorize="hasAuthority('ADMIN')">
 				     	<a class="editB" th:href="@{/editkeyword/{keyId}(keyId=${keyword.keyId})}">EDIT</a>
 				     </td>
-				     <td sec:authorize="hasAuthority('ADMIN')">
-				     	<a class="deleteB" th:href="@{/deletekeyword/{keyId}(keyId=${keyword.keyId})}">DELETE</a>
+				     <td sec:authorize="hasAuthority('ADMIN')" class="deleteColumn">
+				     	<a class="deleteB" th:href="@{/deletekeyword/{keyId}(keyId=${keyword.keyId})}">X</a>
 				     </td>
 				   </tr>
 				 </tbody>

@@ -22,7 +22,6 @@ public class DreamType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long typeId;
-
 	@Size(min = 2, max = 30)
 	private String typeName;
 

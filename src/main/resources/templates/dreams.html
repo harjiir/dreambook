@@ -4,7 +4,9 @@
 	<meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html; charset=UTF-8" />
 	<title>DreamBook - Dreams</title>
 	
-	<link href="styles/demo.css" rel="stylesheet" type="text/css">
+	<!-- My own css file -->
+	<link rel="stylesheet" href="/css/dreams.css" type="text/css">
+	
 	<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
 				integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -18,24 +20,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
 				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 					crossorigin="anonymous"></script>
-					
-	<style type="text/css">
-		.btn{margin: 10px; background-color:#545AA7; color:white; border:none;}
-		.btn:hover{background-color:#545AA7;}
-		
-		.float-child.form{padding: 20px; background-color: #F8F8F8;}
-		.form-row{width:70%; align-items: center;}
-		.form-group{width:60%;}
-		label{font-weight:bold; color:#545AA7;}
-		
-		.searchbar{margin:10px; width:300px;}
-		.tableHeader{background-color:#545AA7; color:white;}
-		.typeFormat{color:white; font-weight:bold;}
-		.editB, .deleteB{cursor:pointer; border:none; color:white; border-radius:5px; padding: 4px 8px;}
-		.editB{background-color:orange;}
-		.deleteB{background-color:red;}
-		.editB:hover, .deleteB:hover{text-decoration:none; color:white;}
-	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,9 +42,10 @@
 	        <a class="nav-link" href="/dreams">Dreams</a>
 	      </li>
 	    </ul>
+	    <p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
 	    <div sec:authorize="isAuthenticated()">
 		    <form th:action="@{/logout}" method="post">
-				<button type="submit" class="btn btn-secondary" style="background-color: grey">Sign Out</button>
+				<button type="submit" class="btn btn-secondary signOut">Sign Out</button>
 			</form>
 	    </div>
 	  </div>
@@ -109,7 +94,7 @@
 					<textarea class="form-control" id="dreamDescription" th:field="*{dreamDescription}" rows="4" placeholder="Please describe the dream..."></textarea>
 					<div class="valid-feedback">Voluntary field.</div>
 				</div>
-				<input type="submit" class="btn" value="Save"></input>
+				<input type="submit" class="btn save" value="Save"></input>
 			</form>
 		</div>
 	  </div>
@@ -132,15 +117,15 @@
 			 </thead>
 			 <tbody>
 			 	<tr th:each = "dream : ${dreams}">
-			     <td th:text="${#temporals.format(dream.dreamDate, 'dd-MM-yyyy')}"></td>
-			     <td class="typeFormat" th:style="|${dream.dreamType.typeName == 'Nightmare' ? 'color:red;' : 'color:green;'}|" th:text="${dream.dreamType.typeName}"></td>
-			     <td th:text="${dream.keyword.keyName}"></td>
+			     <td class="dateFormat" th:text="${#temporals.format(dream.dreamDate, 'dd-MM-yyyy')}"></td>
+			     <td class="typeFormat" th:text="${dream.dreamType.typeName}" th:style="|${dream.dreamType.typeName == 'Nightmare' ? 'color:red;' : 'color:green;'}|"></td>
+			     <td class="keyFormat" th:text="${dream.keyword.keyName}"></td>
 			     <td th:text="${dream.dreamDescription}"></td>
 			     <td>
 			     	<a class="editB" th:href="@{/editdream/{dreamId}(dreamId=${dream.dreamId})}">EDIT</a>
 			     </td>
-			     <td>
-			     	<a class="deleteB" th:href="@{/deletedream/{dreamId}(dreamId=${dream.dreamId})}">DELETE</a>
+			     <td class="deleteColumn">
+			     	<a class="deleteB" th:href="@{/deletedream/{dreamId}(dreamId=${dream.dreamId})}">X</a>
 			     </td>
 			   </tr>
 			 </tbody>

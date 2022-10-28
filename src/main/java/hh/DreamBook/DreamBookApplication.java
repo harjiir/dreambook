@@ -61,13 +61,25 @@ public class DreamBookApplication {
 					"Powerful symbol representing our unconscious fears and anxieties that we avoid.");
 			Keyword kword4 = new Keyword("Ice",
 					"Can be seen as a negative symbol reflecting slow or stuck progress in life.");
-			Keyword kword5 = new Keyword("Marriage",
+			Keyword kword5 = new Keyword("Job",
+					"It is very common to dream of our work, coworkers or boss. Going in for a job interview in your dream represents a new chance or transition in your life. "
+							+ "To dream of losing your job might reflect repressed fears, insecurity or preparing for a real case scenario.");
+			Keyword kword6 = new Keyword("Marriage",
 					"Represents commitment, harmony, balance or transitions in our life. Also a metaphor for reflecting some type of unity or alliance with someone in your life.");
+			Keyword kword7 = new Keyword("Parade",
+					"Watching a parade in your dream represents something or someone being a distraction in your life. Also the characters or people in the parade may have significance to you."
+							+ "If you are part of the parade then your dream suggests that you are lost and just going with the flow of what everyone around you is doing.");
+			Keyword kword8 = new Keyword("War",
+					"Usually suggesting inner conflicts that need to be resolved. War takes place in our mind as you are trying to resolve two opposing negative factors. "
+							+ "This is why it is quite common to escape from the war in your dream. These conflicts might mirror past unresolved experiences, toxic relationships, work or family environments.");
 			kRepo.save(kword1);
 			kRepo.save(kword2);
 			kRepo.save(kword3);
 			kRepo.save(kword4);
 			kRepo.save(kword5);
+			kRepo.save(kword6);
+			kRepo.save(kword7);
+			kRepo.save(kword8);
 
 			// LocalDate is an immutable date-time object, often viewed as year-month-day
 			// The day must be valid for the year and month,
@@ -76,6 +88,7 @@ public class DreamBookApplication {
 			LocalDate date2 = LocalDate.of(2021, 12, 11);
 			LocalDate date3 = LocalDate.of(2021, 5, 30);
 			LocalDate date4 = LocalDate.of(2022, 6, 14);
+			LocalDate date5 = LocalDate.of(2022, 10, 28);
 
 			// some Dreams
 			Dream d1 = new Dream(date1,
@@ -83,13 +96,17 @@ public class DreamBookApplication {
 					type1, kword3);
 			Dream d2 = new Dream(date2, "Skating with mom at Pirkkola.", type2, kword4);
 			Dream d3 = new Dream(date3,
-					"Dancing with comprehensive school friends in the woods, bonfire somewhere near.", type2, kword2);
+					"Dancing with comprehensive school friends in the woods, bonfire somewhere near.", type5, kword2);
 			Dream d4 = new Dream(date4, "Standing at the shore in Latvia, recognized it from our summer car trips.",
 					type7, kword1);
+			Dream d5 = new Dream(date5,
+					"Parade in Japan market, somehow I know it's autumn and I'm feeling happy. Huge digital fish projected in the air. Floating platform and cars above the street. Confetti flying around and people are cheering.",
+					type2, kword7);
 			dRepo.save(d1);
 			dRepo.save(d2);
 			dRepo.save(d3);
 			dRepo.save(d4);
+			dRepo.save(d5);
 
 			// Some new users
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");

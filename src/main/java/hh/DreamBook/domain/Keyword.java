@@ -24,7 +24,7 @@ public class Keyword {
 	private Long keyId;
 	@Size(min = 2, max = 30)
 	private String keyName;
-	@Size(min = 2, max = 250)
+	@Size(min = 2, max = 1000)
 	private String keyDescription;
 
 	// Otherwise entity relationship will cause endless loop

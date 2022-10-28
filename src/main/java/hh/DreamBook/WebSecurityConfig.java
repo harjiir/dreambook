@@ -23,9 +23,9 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		// these endpoints don't need authentication
-		// Enable css when logged out
-		http.authorizeRequests().antMatchers("/index", "/types", "/keywords", "/api").permitAll().anyRequest()
-				.authenticated().and()
+		// Enable css files for styles
+		http.authorizeRequests().antMatchers("/css/**", "/index", "/types", "/keywords", "/api").permitAll()
+				.anyRequest().authenticated().and()
 				// when login is successful direct to /index endpoint
 				// when logout is succesful direct to /login endpoint
 				.formLogin().loginPage("/login").defaultSuccessUrl("/index", true).permitAll().and().logout()

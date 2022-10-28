@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/* This CSS file contains keywords.html styles */
+
+/* SignIn and SignOut buttons */
+.btn.btn-secondary{margin:10px; color:white; border:none;}
+.btn.btn-secondary.signIn{background-color:#A58CB3;}
+.btn.btn-secondary.signIn:hover{background-color:#EAE7FA;}
+.btn.btn-secondary.signOut{background-color:#838BC2;}
+.btn.btn-secondary.signOut:hover{background-color:#EAE7FA;}
+
+/* Role */
+.role{color:#333F63; margin:10px; margin-right: 100px;}
+
+/* Add new dream -keyword */
+.btn.btn-primary{margin:10px; color:white; border:none; background-color:#838BC2;}
+.btn.btn-primary:hover{background-color:#EAE7FA;}
+
+/* Form */
+.float-child.form{padding: 20px; background-color: #F8F8F8;}
+.form-group{width:100%;}
+label{font-weight:bold; color:#333F63;}
+
+/* Save button */
+.btn.save{margin:10px; color:white; border:none; background-color:#838BC2;}
+.btn.save:hover{background-color:#EAE7FA;}
+
+/* Search Bar */
+.searchbar{margin:10px; width:300px;}
+
+/* Table */
+.keyFormat{font-weight:bold; color:#333F63; width: 150px;}
+.tableHeader{background-color:#838BC2; color:white;}
+.deleteColumn{width: 80px;}
+
+/* Table buttons for edit and delete, shown only for ADMIN */
+.editB, .deleteB{cursor:pointer; border: none; color: white; border-radius:5px; padding: 4px 8px;}
+.editB{background-color:#838BC2;}
+.deleteB{background-color:#333F63; margin-right: 20px;}
+.editB:hover, .deleteB:hover{text-decoration:none; color:white; background-color:#EAE7FA;}
+

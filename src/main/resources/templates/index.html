@@ -3,8 +3,10 @@
 <head>
 	<title>DreamBook</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- My own css style file -->
+	<link rel="stylesheet" href="/css/index.css" type="text/css">
 	
-	<link href="styles/demo.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
 				integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -18,19 +20,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
 				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 					crossorigin="anonymous"></script>
-	
-	<style type="text/css">
-		.btn{margin:10px; background-color:#545AA7; color:white; border:none;}
-		.btn:hover{background-color:#454A8A;}
-		
-		.role{color:red; margin-right: 40px; margin-top:10px;}
-		
-		.content{margin:50px;}
-		.welcome{color: #545AA7;}
-		.loremIpsum{color:black; width:70%;}
-		.quote{float:right; width:30%; margin: 30px; margin-top:250px; color:#454A8A;}
-		.name{float:right; color:black; font-weight:bold;}
-	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -53,13 +42,13 @@
 	        <a class="nav-link" href="/dreams">Dreams</a>
 	      </li>
 	    </ul>
-		<p class="role" th:inline="text" sec:authorize="isAuthenticated()"><b>[[${#httpServletRequest.remoteUser}]]</b></p>
+		<p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
 		<div class="signIn" sec:authorize="!isAuthenticated()">
-			<a href="/login" type="submit" class="btn btn-secondary">Sign In</a>
+			<a href="/login" type="submit" class="btn btn-secondary signIn">Sign In</a>
 		</div>
 		<div class="signOut" sec:authorize="isAuthenticated()">
 		   	<form th:action="@{/logout}" method="post">
-				<button type="submit" class="btn btn-secondary" style="background-color: grey">Sign Out</button>
+				<button type="submit" class="btn btn-secondary signOut">Sign Out</button>
 			</form>
 		</div>
 	  </div>

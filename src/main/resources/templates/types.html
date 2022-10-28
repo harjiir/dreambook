@@ -4,7 +4,9 @@
 	<title>DreamBook - Types</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	
-	<link href="styles/demo.css" rel="stylesheet" type="text/css">
+	<!-- My own css file -->
+	<link rel="stylesheet" href="/css/types.css" type="text/css">
+	
 	<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
 				integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -18,16 +20,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
 				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 					crossorigin="anonymous"></script>
-	
-	<style type="text/css">
-		.btn{margin:10px; background-color:#545AA7; color:white; border:none;}
-		.btn:hover{background-color:#545AA7;}
-		
-		.content{margin:50px;}
-		.welcome{color: #545AA7; margin-bottom: 20px;}
-		.card-deck{margin-bottom: 20px;}
-		.card-title{color:#454A8A;}
-	</style>
+					
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,12 +43,13 @@
 	        <a class="nav-link" href="/dreams">Dreams</a>
 	      </li>
 	    </ul>
-	    <div class="signIn" sec:authorize="!isAuthenticated()">
-			<a href="/login" type="submit" class="btn btn-secondary">Sign In</a>
+	    <p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
+	    <div sec:authorize="!isAuthenticated()">
+			<a href="/login" type="submit" class="btn btn-secondary signIn">Sign In</a>
 		</div>
 	    <div sec:authorize="isAuthenticated()">
 	      	<form th:action="@{/logout}" method="post">
-				<button type="submit" class="btn btn-secondary" style="background-color: grey">Sign Out</button>
+				<button type="submit" class="btn btn-secondary signOut">Sign Out</button>
 			</form>
 		</div>    
 	  </div>
@@ -97,8 +91,8 @@
 			    <div class="card-body">
 			      <h5 class="card-title">Lucid Dreams</h5>
 					    <p class="card-text">Lucid dreaming is when you are aware that you are dreaming. 
-					This type of dream can be both exciting and empowering, as it allows you to control the dreamscape. 
-					You may find yourself flying or doing other things that would be impossible in real life. 
+					This type of dream can be both exciting and empowering, as it allows you to control the dream. 
+					You may find yourself doing things that would be impossible in real life. 
 					Lucid dreams can also be used for problem solving or creative purposes, as you can explore different scenarios without any real-world consequences.</p>
 			    </div>
 			  </div>

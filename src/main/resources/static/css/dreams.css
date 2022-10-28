@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/* This CSS file contains dreams.html styles */
+
+/* SignOut button */
+.btn.btn-secondary{margin:10px; color:white; border:none;}
+.btn.btn-secondary.signOut{background-color:#838BC2;}
+.btn.btn-secondary.signOut:hover{background-color:#EAE7FA;}
+
+/* Role */
+.role{color:#333F63; margin:10px; margin-right: 100px;}
+
+/* Add new dream -button */
+.btn.btn-primary{margin:10px; color:white; border:none; background-color:#715C8C;}
+.btn.btn-primary:hover{background-color:#EAE7FA;}
+
+/* Form */
+.float-child.form{padding: 20px; background-color: #F8F8F8;}
+.form-row{width:70%; align-items: center;}
+.form-group{width:60%;}
+label{font-weight:bold; color:#715C8C;}
+
+/* Save button */
+.btn.save{color:white; border:none; background-color:#715C8C;}
+.btn.save:hover{background-color:#EAE7FA;}
+
+/* Search bar */
+.searchbar{margin:10px; width:300px;}
+
+/* Table */
+.tableHeader{background-color:#A58CB3; color:white;}
+.dateFormat, .keyFormat{color:#715C8C; font-weight:bold; width: 150px;}
+.typeFormat{color:white; font-weight:bold; width: 190px;}
+.deleteColumn{width: 80px;}
+
+/* Table buttons for edit and delete */
+.editB, .deleteB{cursor:pointer; border:none; color:white; border-radius:5px; padding: 4px 8px; background-color:#715C8C;}
+.editB{background-color:#A58CB3;}
+.deleteB{background-color:#715C8C;}
+.editB:hover, .deleteB:hover{text-decoration:none; color:white; background-color:#EAE7FA;}
+

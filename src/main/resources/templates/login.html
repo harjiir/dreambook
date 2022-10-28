@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>DreamBook</title>
+	<title>DreamBook - Sign In</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	
-	<link href="styles/demo.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/css/login.css" type="text/css">
+	
 	<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
 				integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -18,20 +19,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
 				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 					crossorigin="anonymous"></script>
-	
-	<style type="text/css">
-		.btn{background-color:#545AA7; color:white; border:none;}
-		.btn:hover{background-color:#545AA7;}
-		
-		.content{margin:50px;}
-		h1{color:#545AA7;}
-		.signIn{width: 300px; padding: 30px; margin-top: 20px; background-color:#F5F5F5;}
-		
-		.invalidInput{margin-top:20px; color:red;}
-		.navbar.navbar-expand-lg.navbar-light.bg-light{padding:16px;}
-	</style>
 </head>
-<body>
+<body style="background-color:#D7D4DD;">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="/index">DreamBook</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,8 +44,8 @@
 	  </div>
 	</nav>
 	<div class="content">
-		<h1>Please Sign In</h1>
-		<form th:action="@{/login}" method="post" class="signIn">
+		<form th:action="@{/login}" method="post" class="signInForm">
+			<div class="header"><h1>Please Sign In</h1></div>
 		    <div class="form-group">
 		      <label for="username">Username</label>
 		      <input type="text" class="form-control" id="username" name="username" placeholder="Username">
@@ -65,7 +54,7 @@
 		      <label for="password">Password</label>
 		      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
 		    </div>
-		    <button type="submit" class="btn btn-primary">Sign in</button>
+		    <button type="submit" class="btn btn-primary signIn">Sign in</button>
 			<div class="invalidInput">
 				<div th:if="${param.error}">
 					<b>Invalid Sign In.</b> <br>Please check that your username and password are correct.

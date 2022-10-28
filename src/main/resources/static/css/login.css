@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+/* Header */
+.header{text-align:center; color: #715C8C; margin-bottom:50px;}
+
+/* SignIn Form */
+.signInForm{margin:auto; margin-top:100px; width: 400px; background-color: #F8F8F8; padding: 50px; border-radius:5px;}
+.form-group{color:#715C8C; font-weight:bold;}
+
+/* SignIn button */
+.btn.btn-primary.signIn{background-color:#838BC2; color:white; border:none; margin-top:20px;}
+.btn.btn-primary.signIn:hover{background-color:#EAE7FA;}
+
+/* Warnings */
+.invalidInput{margin-top:20px; color:red;}
+.navbar.navbar-expand-lg.navbar-light.bg-light{padding:16px;}
