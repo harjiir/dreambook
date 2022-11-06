@@ -42,6 +42,8 @@
 	        <a class="nav-link" href="/dreams">Dreams</a>
 	      </li>
 	    </ul>
+	    
+		<!-- Show signIn and signOut buttons and role depending on current state -->
 		<p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
 		<div class="signIn" sec:authorize="!isAuthenticated()">
 			<a href="/login" type="submit" class="btn btn-secondary signIn">Sign In</a>
@@ -54,8 +56,8 @@
 	  </div>
 	</nav>
 	<div class="content">
-		<div class="welcome">
-			<h1>What Do Our Dreams Mean?</h1>
+		<div>
+			<h1 class="header">What Do Our Dreams Mean?</h1>
 			<div class="quote">
 				<h2>“The interpretation of dreams is the royal road to a knowledge of the unconscious activities of the mind.”</h2>
 				<p class="name">SIGMUND FREUD</p>
@@ -78,9 +80,13 @@
 				</p>
 				<b> 
 				And even in the future there will be many different theories on dream meanings and dream interpretation.
-				</b>
+				</b><br>
+				<h1 class="header tips">Tips for Better Sleep</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat ipsum elit, at fermentum nulla rhoncus a. In sed luctus magna. Curabitur sodales mauris elit, quis viverra est aliquam at. Quisque mauris nisi, porta non dui non, congue sodales erat. Fusce convallis urna in neque suscipit egestas eu ac libero. Nunc sed urna vitae diam faucibus maximus. Maecenas rhoncus quis velit vitae tincidunt. Etiam aliquam erat in bibendum molestie. Duis semper diam a convallis blandit. Nullam mollis diam tellus, id tincidunt nisi finibus eu. Morbi rhoncus dui diam, at vestibulum lectus ultricies non. Suspendisse efficitur tincidunt sem, vitae euismod metus dictum ac. Praesent imperdiet ex magna, sit amet condimentum magna porttitor in.
+
+Nunc et tristique risus, sed porttitor nunc. Ut eu tempor justo, nec consequat orci. Cras quis tempor nisl. Ut ac est sed justo viverra facilisis id vitae purus. Praesent lobortis vulputate est a euismod. Cras volutpat egestas ligula nec maximus. Duis quis imperdiet justo. Nulla fringilla interdum magna, vitae tristique neque porta sed. Ut pulvinar nisi et facilisis malesuada. Proin elit turpis, suscipit in nulla ac, ornare posuere est. Aliquam id pharetra orci, sit amet maximus nibh. Morbi eget mi enim. Nulla eu euismod lorem. Vestibulum dignissim orci massa, at aliquam sapien dignissim sit amet.</p>
 			</div>
 		</div>
-	</div>	
+	</div>
 </body>
 </html>

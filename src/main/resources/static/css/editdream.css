@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/* This CSS file contains editdream.html styles */
+
+/* SignOut button */
+.btn.btn-secondary{margin:10px; color:white; border:none;}
+.btn.btn-secondary.signOut{background-color:#838BC2;}
+.btn.btn-secondary.signOut:hover{background-color:#EAE7FA;}
+
+/* Role */
+.role{color:#333F63; margin:10px; margin-right: 100px;}
+
+/* Form */
+.float-child.form{padding: 20px; background-color: #F8F8F8; margin:50px;}
+.form-row{width:70%; align-items: center;}
+.form-group{width:60%;}
+label{font-weight:bold; color:#715C8C;}
+
+/* Save and clear buttons in form */
+.btn.save, .btn.clear:hover{color:white; border:none; background-color:#715C8C;}
+.btn.clear, .btn.save:hover{background-color:#EAE7FA; color:#715C8C; border:none;}

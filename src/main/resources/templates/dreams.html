@@ -95,6 +95,7 @@
 					<div class="valid-feedback">Voluntary field.</div>
 				</div>
 				<input type="submit" class="btn save" value="Save"></input>
+				<input type="reset" class="btn clear" value="Clear"></input>
 			</form>
 		</div>
 	  </div>
@@ -118,7 +119,7 @@
 			 <tbody>
 			 	<tr th:each = "dream : ${dreams}">
 			     <td class="dateFormat" th:text="${#temporals.format(dream.dreamDate, 'dd-MM-yyyy')}"></td>
-			     <td class="typeFormat" th:text="${dream.dreamType.typeName}" th:style="|${dream.dreamType.typeName == 'Nightmare' ? 'color:red;' : 'color:green;'}|"></td>
+			     <td class="typeFormat" th:text="${dream.dreamType.typeName}" th:classappend="${dream.dreamType.typeName}" ></td>
 			     <td class="keyFormat" th:text="${dream.keyword.keyName}"></td>
 			     <td th:text="${dream.dreamDescription}"></td>
 			     <td>

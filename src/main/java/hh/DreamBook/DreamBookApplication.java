@@ -37,7 +37,7 @@ public class DreamBookApplication {
 			// some Dream Types
 			DreamType type1 = new DreamType("Nightmare");
 			DreamType type2 = new DreamType("Normal dream");
-			DreamType type3 = new DreamType("Day dream");
+			DreamType type3 = new DreamType("Daydream");
 			DreamType type4 = new DreamType("False-Awakening dream");
 			DreamType type5 = new DreamType("Lucid dream");
 			DreamType type6 = new DreamType("Prophetic dream");
@@ -100,7 +100,7 @@ public class DreamBookApplication {
 			Dream d4 = new Dream(date4, "Standing at the shore in Latvia, recognized it from our summer car trips.",
 					type7, kword1);
 			Dream d5 = new Dream(date5,
-					"Parade in Japan market, somehow I know it's autumn and I'm feeling happy. Huge digital fish projected in the air. Floating platform and cars above the street. Confetti flying around and people are cheering.",
+					"Parade in Japan market, it's autumn and I'm smiling. Huge orange digital fish projected in the air. Floating platform and cars above the street. Confetti flying around and people are cheering.",
 					type2, kword7);
 			dRepo.save(d1);
 			dRepo.save(d2);

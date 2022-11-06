@@ -3,7 +3,10 @@
 <head>
 	<meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html; charset=UTF-8" />
 	<title>DreamBook - Edit</title>
-	<link href="styles/demo.css" rel="stylesheet" type="text/css">
+	
+	<!-- My own css file -->
+	<link rel="stylesheet" href="/css/editdream.css" type="text/css">
+	
 	<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
 				integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -17,19 +20,36 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
 				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 					crossorigin="anonymous"></script>
-					
-	<style type="text/css">
-		.float-child.form{padding: 20px; background-color: #F8F8F8;}
-		.form-row{width:70%; align-items: center;}
-		.form-group{width:60%;}
-		label{font-weight:bold; color:#545AA7;}
-		
-		.btn{background-color:#545AA7; color:white; border:none;}
-		.btn:hover{background-color:#545AA7; color:black;}
-		.a:hover{text-decoration: none; background-color:#545AA7;}
-	</style>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="/index">DreamBook</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarText">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item">
+	        <a class="nav-link" href="/index">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/types">Dream Types</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/keywords">Keywords</a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/dreams">Dreams</a>
+	      </li>
+	    </ul>
+	    <p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
+	    <div sec:authorize="isAuthenticated()">
+		    <form th:action="@{/logout}" method="post">
+				<button type="submit" class="btn btn-secondary signOut">Sign Out</button>
+			</form>
+	    </div>
+	  </div>
+	</nav>
 	<div class="float-child form">
 		<form th:object="${dreamInEdit}" th:action="@{/savedream}" action="#" method="post" class="was-validated">
 			<div class="form-row">
@@ -70,8 +90,11 @@
 				<textarea class="form-control" id="dreamDescription" th:field="*{dreamDescription}" rows="4" placeholder="Please describe the dream..."></textarea>
 				<div class="valid-feedback">Voluntary field.</div>
 			</div>
-			<input type="submit" class="btn" value="Save" />
-			<a class="btn" style="background-color:red" href="/dreams" >Cancel</a>
+			<input type="submit" class="btn save" value="Save" />
+			<input type="reset" class="btn clear" value="Cancel changes"></input>
+			<a href="/dreams">
+				<button class="btn clear">Go back to Dreams</button>
+			</a>
 		</form>
 	</div>
 </body>

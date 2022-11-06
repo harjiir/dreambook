@@ -3,9 +3,13 @@ package hh.DreamBook.web;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +38,7 @@ public class KeywordController {
 	}
 
 	// Add Keyword
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/addkeyword")
 	public String addKeyword(Model model) {
 		model.addAttribute("keyword", new Keyword());
@@ -42,13 +47,19 @@ public class KeywordController {
 
 	// Save Keyword
 	// Redirect to keywords after adding a new Keyword with a form
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/savekeyword")
-	public String saveKeyword(Keyword keyword) {
-		kRepo.save(keyword);
-		return "redirect:keywords";
+	public String saveKeyword(@Valid Keyword keyword, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "keywords";
+		} else {
+			kRepo.save(keyword);
+			return "redirect:keywords";
+		}
 	}
 
 	// Delete Keyword
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/deletekeyword/{dreamId}")
 	// @PathVariable extracts id from the URI
 	public String deleteKeyword(@PathVariable("dreamId") Long dreamId, Model model) {
@@ -57,6 +68,7 @@ public class KeywordController {
 	}
 
 	// Edit Keyword
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/editkeyword/{dreamId}")
 	// @PathVariable extracts id from the URI
 	public String editKeyword(@PathVariable("dreamId") Long dreamId, Model model) {

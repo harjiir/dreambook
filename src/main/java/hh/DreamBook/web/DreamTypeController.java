@@ -3,10 +3,13 @@ package hh.DreamBook.web;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +36,7 @@ public class DreamTypeController {
 	}
 
 	// Add DreamType
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/addtype")
 	public String addType(Model model) {
 		model.addAttribute("dreamType", new DreamType());
@@ -41,10 +45,15 @@ public class DreamTypeController {
 
 	// Save DreamType
 	// Redirect to dreamtypes after adding a new DreamType with a form
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/savetype")
-	public String saveType(DreamType dreamType) {
-		dtRepo.save(dreamType);
-		return "redirect:dreamtypes";
+	public String saveType(@Valid DreamType dreamType, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "dreamtypes";
+		} else {
+			dtRepo.save(dreamType);
+			return "redirect:dreamtypes";
+		}
 	}
 
 	// Delete DreamType, only ADMIN can do this

@@ -4,10 +4,14 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +43,7 @@ public class DreamController {
 		return "index";
 	}
 
-	// Index Page
+	// Login Page
 	@GetMapping("/login")
 	public String login() {
 		return "login";
@@ -51,7 +55,7 @@ public class DreamController {
 		return "types"; // types.html
 	}
 
-	// All Dreams
+	// Dreams page with list of dreams and form
 	@GetMapping("/dreams")
 	public String listDreams(Model model) {
 		// All dreams are fetched from the database and added to the model attribute
@@ -67,6 +71,7 @@ public class DreamController {
 	}
 
 	// Add Dream
+	@PreAuthorize("hasAuthority('USER')")
 	@GetMapping("/adddream")
 	public String addDream(Model model) {
 		model.addAttribute("dream", new Dream());
@@ -79,13 +84,20 @@ public class DreamController {
 
 	// Save Dream
 	// Redirect to dreams after adding a new dream with a form
+	@PreAuthorize("hasAuthority('USER')")
 	@PostMapping("/savedream")
-	public String saveDream(Dream dream) {
-		dRepo.save(dream);
-		return "redirect:dreams";
+	public String saveDream(@Valid Dream dream, BindingResult bindingResult) {
+		// check validation errors
+		if (bindingResult.hasErrors()) {
+			return "dreams";
+		} else {
+			dRepo.save(dream);
+			return "redirect:dreams";
+		}
 	}
 
 	// Delete Dream
+	@PreAuthorize("hasAuthority('USER')")
 	@GetMapping("/deletedream/{dreamId}")
 	// @PathVariable extracts id from the URI
 	public String deleteDream(@PathVariable("dreamId") Long dreamId, Model model) {
@@ -94,6 +106,7 @@ public class DreamController {
 	}
 
 	// Edit Dream
+	@PreAuthorize("hasAuthority('USER')")
 	@GetMapping("/editdream/{dreamId}")
 	// @PathVariable extracts id from the URI
 	public String editDream(@PathVariable("dreamId") Long dreamId, Model model) {
