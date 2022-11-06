@@ -17,5 +17,6 @@
 label{font-weight:bold; color:#715C8C;}
 
 /* Save and clear buttons in form */
-.btn.save, .btn.clear:hover{color:white; border:none; background-color:#715C8C;}
-.btn.clear, .btn.save:hover{background-color:#EAE7FA; color:#715C8C; border:none;}
+.btn.save, .btn.clear:hover, .btn.cancel:hover{color:white; border:none; background-color:#715C8C; margin-right:20px;}
+.btn.clear, .btn.cancel, .btn.save:hover{background-color:#EAE7FA; color:#715C8C; border:none;}
+.btn.cancel{margin-top:20px;}

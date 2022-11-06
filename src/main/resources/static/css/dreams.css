@@ -31,10 +31,17 @@ label{font-weight:bold; color:#715C8C;}
 .tableHeader{background-color:#A58CB3; color:white;}
 .dateFormat, .keyFormat{color:#715C8C; font-weight:bold; width: 150px;}
 .typeFormat{font-weight:bold; width: 190px;}
-.deleteColumn{width: 80px;}
+.actions{width: 200px;}
 
 /* Table buttons for edit and delete */
-.editB, .deleteB{cursor:pointer; border:none; color:white; border-radius:5px; padding: 4px 8px; background-color:#715C8C;}
+.editB, .deleteB{
+	cursor:pointer; 
+	border:none; 
+	border-radius:5px; 
+	padding: 4px 8px; 
+	margin-right:40px; 
+	background-color:#715C8C; 
+	color:white;}
 .editB{background-color:#A58CB3;}
 .deleteB{background-color:#715C8C;}
 .editB:hover, .deleteB:hover{text-decoration:none; color:#333F63; background-color:#EAE7FA;}
@@ -47,11 +54,3 @@ td.False-Awakening.dream{color:#8D538D;}
 td.Lucid.dream{color:#A668A6;}
 td.Prophetic.dream{color:#B785B7;}
 td.Recurring.dream{color:#C8A2C8;}
-
-
-
-
-
-
-
-

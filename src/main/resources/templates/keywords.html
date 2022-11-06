@@ -91,17 +91,14 @@
 				     <th scope="col">KEYWORD</th>
 				     <th scope="col">DESCRIPTION</th>
 				     <th scope="col" sec:authorize="hasAuthority('ADMIN')">ACTIONS</th>
-				     <th scope="col" sec:authorize="hasAuthority('ADMIN')"></th>
 				   </tr>
 				 </thead>
 				 <tbody>
 				   <tr th:each = "keyword : ${keywords}">
 				     <td  class="keyFormat" th:text="${keyword.keyName}"></td>
-				     <td th:text="${keyword. keyDescription}"></td>
-				     <td sec:authorize="hasAuthority('ADMIN')">
+				     <td class="descriptionCol" th:text="${keyword.keyDescription}"></td>
+				     <td sec:authorize="hasAuthority('ADMIN')" class="actions">
 				     	<a class="editB" th:href="@{/editkeyword/{keyId}(keyId=${keyword.keyId})}">EDIT</a>
-				     </td>
-				     <td sec:authorize="hasAuthority('ADMIN')" class="deleteColumn">
 				     	<a class="deleteB" th:href="@{/deletekeyword/{keyId}(keyId=${keyword.keyId})}">X</a>
 				     </td>
 				   </tr>

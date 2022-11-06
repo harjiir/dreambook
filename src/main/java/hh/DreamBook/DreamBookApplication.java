@@ -101,7 +101,7 @@ public class DreamBookApplication {
 					type7, kword1);
 			Dream d5 = new Dream(date5,
 					"Parade in Japan market, it's autumn and I'm smiling. Huge orange digital fish projected in the air. Floating platform and cars above the street. Confetti flying around and people are cheering.",
-					type2, kword7);
+					type6, kword7);
 			dRepo.save(d1);
 			dRepo.save(d2);
 			dRepo.save(d3);
