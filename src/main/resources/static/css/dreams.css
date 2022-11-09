@@ -10,6 +10,9 @@
 /* Role */
 .role{color:#333F63; margin:10px; margin-right: 100px;}
 
+/* Temporary solution for denying Admin's rights to see User's dreams */
+.admin{color: #545AA7; margin:50px;}
+
 /* Add new dream -button */
 .btn.btn-primary{margin:10px; color:white; border:none; background-color:#715C8C;}
 .btn.btn-primary:hover{background-color:#EAE7FA;}

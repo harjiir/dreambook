@@ -25,12 +25,11 @@ public class WebSecurityConfig {
 		// these endpoints don't need authentication
 		// Enable css files for styles
 		http.authorizeRequests().antMatchers("/css/**", "/index", "/types", "/keywords", "/api").permitAll()
-				// only user has access to dreams page
-				.antMatchers("/dreams").hasAuthority("USER").anyRequest().authenticated().and()
+				.anyRequest().authenticated().and()
 				// when login is successful direct to /index endpoint
 				// when logout is successful direct to /login endpoint
 				.formLogin().loginPage("/login").defaultSuccessUrl("/index", true).permitAll().and().logout()
-				.logoutSuccessUrl("/login").permitAll().and().httpBasic();
+				.logoutSuccessUrl("/login?logout").permitAll().and().httpBasic();
 		return http.build();
 	}
 

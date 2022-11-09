@@ -50,85 +50,90 @@
 	    </div>
 	  </div>
 	</nav>
-	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#DreamForm" aria-expanded="false" aria-controls="collapseExample">
-	  + Add new Dream
-	</button>
-	<div class="collapse" id="DreamForm">
-	  <div class="card card-body">
-	  	<div class="float-child form">
-			<form th:object="${dream}" th:action="@{savedream}" action="#" method="post" class="was-validated">
-				<div class="form-row">
-					<div class="form-group col-md-3">
-						<label>Date</label>
-						<input class="form-control" type="date" placeholder="dd-mm-yyyy" id="dreamDate" required th:field="*{dreamDate}">
-						<div class="valid-feedback">Ok</div>
-    					<div class="invalid-feedback">Please choose date.</div>
+	<div sec:authorize="hasAuthority('USER')">
+		<button sec:authorize="hasAuthority('USER')" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#DreamForm" aria-expanded="false" aria-controls="collapseExample">
+		  + Add new Dream
+		</button>
+		<div class="collapse" id="DreamForm">
+		  <div class="card card-body">
+		  	<div class="float-child form">
+				<form th:object="${dream}" th:action="@{savedream}" action="#" method="post" class="was-validated">
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label>Date</label>
+							<input class="form-control" type="date" placeholder="dd-mm-yyyy" id="dreamDate" required th:field="*{dreamDate}">
+							<div class="valid-feedback">Ok</div>
+	    					<div class="invalid-feedback">Please choose date.</div>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="deplist">Type</label>
+							<select id="deplist" class="form-control" required th:field="*{dreamType}">
+								<option value="" selected="selected">Select type...</option>
+								<option th:each="dreamType: ${dreamTypes}"
+											th:value="${dreamType.typeId}"
+												th:text="${dreamType.typeName}">
+								</option>
+							</select>
+							<div class="valid-feedback">Valid.</div>
+	      					<div class="invalid-feedback">Please fill out this field.</div>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="deplist">Keyword</label>
+							<select id="deplist" class="form-control" required th:field="*{keyword}">
+								<option value="" selected="selected">Select keyword...</option>
+								<option th:each="keyword: ${keywords}"
+											th:value="${keyword.keyId}"
+												th:text="${keyword.keyName}">
+								</option>
+							</select>
+							<div class="valid-feedback">Valid.</div>
+	      					<div class="invalid-feedback">Please fill out this field.</div>
+						</div>
 					</div>
-					<div class="form-group col-md-3">
-						<label for="deplist">Type</label>
-						<select id="deplist" class="form-control" required th:field="*{dreamType}">
-							<option value="" selected="selected">Select type...</option>
-							<option th:each="dreamType: ${dreamTypes}"
-										th:value="${dreamType.typeId}"
-											th:text="${dreamType.typeName}">
-							</option>
-						</select>
-						<div class="valid-feedback">Valid.</div>
-      					<div class="invalid-feedback">Please fill out this field.</div>
+					<div class="form-group">
+						<label for="dreamDescription">Description</label>
+						<textarea class="form-control" id="dreamDescription" th:field="*{dreamDescription}" rows="4" placeholder="Please describe the dream..."></textarea>
+						<div class="valid-feedback">Voluntary field.</div>
 					</div>
-					<div class="form-group col-md-4">
-						<label for="deplist">Keyword</label>
-						<select id="deplist" class="form-control" required th:field="*{keyword}">
-							<option value="" selected="selected">Select keyword...</option>
-							<option th:each="keyword: ${keywords}"
-										th:value="${keyword.keyId}"
-											th:text="${keyword.keyName}">
-							</option>
-						</select>
-						<div class="valid-feedback">Valid.</div>
-      					<div class="invalid-feedback">Please fill out this field.</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="dreamDescription">Description</label>
-					<textarea class="form-control" id="dreamDescription" th:field="*{dreamDescription}" rows="4" placeholder="Please describe the dream..."></textarea>
-					<div class="valid-feedback">Voluntary field.</div>
-				</div>
-				<input type="submit" class="btn save" value="Save"></input>
-				<input type="reset" class="btn clear" value="Clear"></input>
-			</form>
+					<input type="submit" class="btn save" value="Save"></input>
+					<input type="reset" class="btn clear" value="Clear"></input>
+				</form>
+			</div>
+		  </div>
 		</div>
-	  </div>
-	</div>
-	<div class="searchbar">
-		  <input class="form-control mr-sm-2" type="text" id="userInput" onkeyup="searchTable()" placeholder="Search by date...">
-	</div>
-	<div class="float-container">
-		<div class="float-child table">
-			<table class="table table-hover" id="dreamTable">
-			 <thead>
-			   <tr class="tableHeader">
-			     <th scope="col">DATE</th>
-			     <th scope="col">TYPE</th>
-			     <th scope="col">KEYWORD</th>
-			     <th scope="col">DESCRIPTION</th>
-			     <th scope="col">ACTIONS</th>
-			   </tr>
-			 </thead>
-			 <tbody>
-			 	<tr th:each = "dream : ${dreams}">
-			     <td class="dateFormat" th:text="${#temporals.format(dream.dreamDate, 'dd-MM-yyyy')}"></td>
-			     <td class="typeFormat" th:text="${dream.dreamType.typeName}" th:classappend="${dream.dreamType.typeName}" ></td>
-			     <td class="keyFormat" th:text="${dream.keyword.keyName}"></td>
-			     <td th:text="${dream.dreamDescription}"></td>
-			     <td class="actions">
-			     	<a class="editB" th:href="@{/editdream/{dreamId}(dreamId=${dream.dreamId})}">EDIT</a>
-			     	<a class="deleteB" th:href="@{/deletedream/{dreamId}(dreamId=${dream.dreamId})}">X</a>
-			     </td>
-			   </tr>
-			 </tbody>
-			</table>
+		<div class="searchbar">
+			  <input class="form-control mr-sm-2" type="text" id="userInput" onkeyup="searchTable()" placeholder="Search by date...">
 		</div>
+		<div class="float-container">
+			<div class="float-child table">
+				<table class="table table-hover" id="dreamTable">
+				 <thead>
+				   <tr class="tableHeader">
+				     <th scope="col">DATE</th>
+				     <th scope="col">TYPE</th>
+				     <th scope="col">KEYWORD</th>
+				     <th scope="col">DESCRIPTION</th>
+				     <th scope="col">ACTIONS</th>
+				   </tr>
+				 </thead>
+				 <tbody>
+				 	<tr th:each="dream : ${dreams}">
+				     <td class="dateFormat" th:text="${#temporals.format(dream.dreamDate, 'dd-MM-yyyy')}"></td>
+				     <td class="typeFormat" th:text="${dream.dreamType.typeName}" th:classappend="${dream.dreamType.typeName}" ></td>
+				     <td class="keyFormat" th:text="${dream.keyword.keyName}"></td>
+				     <td th:text="${dream.dreamDescription}"></td>
+				     <td class="actions">
+				     	<a class="editB" th:href="@{/editdream/{dreamId}(dreamId=${dream.dreamId})}">EDIT</a>
+				     	<a class="deleteB" th:href="@{/deletedream/{dreamId}(dreamId=${dream.dreamId})}">X</a>
+				     </td>
+				   </tr>
+				 </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="admin" sec:authorize="hasAuthority('ADMIN')">
+		<h1>This page is only for Users</h1>
 	</div>
 	<script>
 		function searchTable() {

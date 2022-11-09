@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>DreamBook - Types</title>
+	<title>DreamBook - Dream Types</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	
 	<!-- My own css file -->
@@ -20,7 +20,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
 				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 					crossorigin="anonymous"></script>
-					
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,65 +54,23 @@
 	  </div>
 	</nav>
 	<div class="content">
-		<div class="welcome">
+		<div class="header">
 			<h1>Different Types of Dreams</h1>
 		</div>
-		<div class="card-deck">
-			  <div class="card">
+		<p><b>Although there is still much we don’t understand about the nature of dreams and their complexities,</b> it is generally agreed in the medical and psychological communities that dreams reflect, at least in part, our subconscious workings.</p>
+		<p>Each category of dream below can be a distinct, <b>“stand-alone” experience.</b> 
+		It is also common to have a dream with <b>several characteristics at the same time.</b> 
+		For example, a dream may simultaneously include a current event, metaphor, problem-solving, and fantasy. 
+		Although dreams are often complicated and difficult to understand, even partial awareness and insight can be helpful.
+		</p>
+		<div class="card-deck" th:each="dreamType : ${dreamTypes}">
+		    <div class="card">
 			    <div class="card-body">
-			      <h5 class="card-title">Normal Dreams</h5>
-				    <p class="card-text">Common dreams about people and experiences we might have forgotten.</p>
+			      <h5 class="card-title" th:text="${dreamType.typeName}"></h5>
+				    <p class="card-text" th:text="${dreamType.typeDescription}"></p>
 			    </div>
-			  </div>
-			  <div class="card">
-			    <div class="card-body">
-			      <h5 class="card-title">Nightmares</h5>
-					    <p class="card-text">Nightmares are fear-inducing dreams and they evoke fear, anxiety, or sadness in the dreamer. This dream state can be the brain’s way of processing life’s daily stress factors, unresolved anxieties or traumas.</p>
-			    </div>
-			  </div>
-			  <div class="card">
-			    <div class="card-body">
-			      <h5 class="card-title">Daydreams</h5>
-					    <p class="card-text">Daydreams occur while you are awake and they may be based on your current situation or on something that you are hoping for in the future.
-					They can be positive or negative, depending on what you are thinking about. Sometimes, daydreams can give you insights into your own thoughts and feelings.</p>
-			    </div>
-			  </div>
-			  <div class="card">
-			    <div class="card-body">
-			      <h5 class="card-title">False-Awakening Dreams</h5>
-					    <p class="card-text">During a false awakening, the sleeper believes they are awake when in reality they are still sleeping.
-					False awakenings are typically realistic and setting may be identical to real life or there may be small details that are different.</p>
-			    </div>
-			  </div>
+		    </div>
 		</div>
-		<div class="card-deck">
-			  <div class="card">
-			    <div class="card-body">
-			      <h5 class="card-title">Lucid Dreams</h5>
-					    <p class="card-text">Lucid dreaming is when you are aware that you are dreaming. 
-					This type of dream can be both exciting and empowering, as it allows you to control the dream. 
-					You may find yourself doing things that would be impossible in real life. 
-					Lucid dreams can also be used for problem solving or creative purposes, as you can explore different scenarios without any real-world consequences.</p>
-			    </div>
-			  </div>
-			  <div class="card">
-			    <div class="card-body">
-			      <h5 class="card-title">Prophetic Dreams</h5>
-					    <p class="card-text">Future events occur in your dream before they happen in real life.
-					Prophetic dreams can be found in many different cultures and religions, and they have been a source of fascination for centuries.
-					Prophetic dreams can provide valuable insights into the future, but they should not be considered infallible.</p>
-			    </div>
-			  </div>
-			  <div class="card">
-			    <div class="card-body">
-			      <h5 class="card-title">Recurring Dreams</h5>
-					    <p class="card-text">Recurring dreams refer to dreams that we repeatedly experience, often with slight variations but containing similar themes.
-					They may be based on something from your past that is unresolved, or they may represent a fear or anxiety that you have. 
-					Recurring dreams can reflect unmet needs or areas of frustration that need attention.
-					They can also offer insights into your subconscious mind telling you something about something that you haven’t realized yet.</p>
-			    </div>
-			  </div>
-		</div>
-	</div>	
+	</div>
 </body>
 </html>

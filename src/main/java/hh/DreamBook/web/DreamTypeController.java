@@ -27,12 +27,11 @@ public class DreamTypeController {
 	@Autowired
 	private DreamTypeRepo dtRepo;
 
-	// All DreamTypes
-	@GetMapping("/dreamtypes")
+	// DreamTypes page
+	@GetMapping("/types")
 	public String listTypes(Model model) {
-		// All dreams are fetched from the database and added to the model attribute
 		model.addAttribute("dreamTypes", dtRepo.findAll());
-		return "dreamtypes"; // dreamstypes.html
+		return "types"; // types.html
 	}
 
 	// Add DreamType

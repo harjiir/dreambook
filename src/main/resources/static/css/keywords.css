@@ -30,12 +30,12 @@ label{font-weight:bold; color:#333F63;}
 /* Table and columns */
 .keyFormat{font-weight:bold; color:#333F63; width: 150px;}
 .tableHeader{background-color:#838BC2; color:white;}
-.descriptionCol{width: 80%;}
-.actins{width: 20%;}
+.descriptionCol{width: 70%;}
+.actions{width: 100px;}
 
 /* Table buttons for edit and delete, shown only for ADMIN */
 .editB, .deleteB{cursor:pointer; border: none; color: white; border-radius:5px; padding: 4px 8px; margin-right:40px;}
 .editB{background-color:#838BC2;}
-.deleteB{background-color:#333F63; margin-right: 20px;}
+.deleteB{background-color:#333F63;}
 .editB:hover, .deleteB:hover{text-decoration:none; background-color:#EAE7FA; color:#333F63;}
 

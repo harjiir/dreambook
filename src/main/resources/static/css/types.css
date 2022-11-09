@@ -12,10 +12,10 @@
 .role{color:#333F63; margin:10px; margin-right: 100px;}
 
 /* Basics */
-.welcome{color:#838BC2; margin-bottom: 20px;}
+.header{color:#838BC2; margin-bottom: 20px;}
 .content{margin:50px;}
 
 /* Cards */
-.card-deck{margin-bottom: 20px;}
+.card-deck{padding:20px; width:80%;}
 .card-body{background-color: #F8F8F8;}
 .card-title{color:#A58CB3; font-weight:bold;}

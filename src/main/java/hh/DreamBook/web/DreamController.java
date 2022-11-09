@@ -49,15 +49,10 @@ public class DreamController {
 		return "login";
 	}
 
-	// Types Page
-	@GetMapping("/types")
-	public String types() {
-		return "types"; // types.html
-	}
-
 	// Dreams page with list of dreams and form
 	@GetMapping("/dreams")
 	public String listDreams(Model model) {
+
 		// All dreams are fetched from the database and added to the model attribute
 		model.addAttribute("dreams", dRepo.findAll());
 

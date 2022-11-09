@@ -24,6 +24,9 @@ public class DreamType {
 	private Long typeId;
 	@Size(min = 2, max = 30)
 	private String typeName;
+	// constant is 255 characters
+	@Size(min = 2, max = 500)
+	private String typeDescription;
 
 	// Otherwise entity relationship will cause endless loop
 	@JsonIgnore
@@ -35,9 +38,10 @@ public class DreamType {
 		super();
 	}
 
-	public DreamType(String typeName) {
+	public DreamType(@Size(min = 2, max = 30) String typeName, @Size(min = 2, max = 500) String typeDescription) {
 		super();
 		this.typeName = typeName;
+		this.typeDescription = typeDescription;
 	}
 
 	public Long getTypeId() {
@@ -48,6 +52,14 @@ public class DreamType {
 		return typeName;
 	}
 
+	public String getTypeDescription() {
+		return typeDescription;
+	}
+
+	public List<Dream> getDreams() {
+		return dreams;
+	}
+
 	public void setTypeId(Long typeId) {
 		this.typeId = typeId;
 	}
@@ -56,9 +68,8 @@ public class DreamType {
 		this.typeName = typeName;
 	}
 
-	// getters and setters for dreams
-	public List<Dream> getDreams() {
-		return dreams;
+	public void setTypeDescription(String typeDescription) {
+		this.typeDescription = typeDescription;
 	}
 
 	public void setDreams(List<Dream> dreams) {
@@ -67,7 +78,6 @@ public class DreamType {
 
 	@Override
 	public String toString() {
-		// Do not insert list attribute dreams here! Otherwise --> infinite loop
-		return "DreamType [typeId=" + typeId + ", typeName=" + typeName + "]";
+		return "DreamType [typeId=" + typeId + ", typeName=" + typeName + ", typeDescription=" + typeDescription + "]";
 	}
 }
