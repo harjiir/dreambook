@@ -33,13 +33,13 @@
 	        <a class="nav-link" href="/index">Home</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="/types">Dream Types</a>
+	        <a class="nav-link" href="/typelist">Dream Types</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="/keywords">Keywords</a>
+	        <a class="nav-link" href="/keywordlist">Keywords</a>
 	      </li>
 	      <li class="nav-item active">
-	        <a class="nav-link" href="/dreams">Dreams</a>
+	        <a class="nav-link" href="/dreamlist">Dreams</a>
 	      </li>
 	    </ul>
 	    <p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
@@ -87,13 +87,13 @@
 			</div>
 			<div class="form-group">
 				<label for="dreamDescription">Description</label>
-				<textarea class="form-control" id="dreamDescription" th:field="*{dreamDescription}" rows="4" placeholder="Please describe the dream..."></textarea>
+				<textarea class="form-control" id="dreamDescription" th:field="*{dreamDescription}" rows="6" placeholder="Please describe the dream..."></textarea>
 				<div class="valid-feedback">Voluntary field.</div>
 			</div>
 			<input type="submit" class="btn save" value="Save" />
 			<input type="reset" class="btn clear" value="Cancel changes"></input>
 		</form>
-			<a href="/dreams">
+			<a href="/dreamlist">
 				<button class="btn cancel">Go back to Dreams</button>
 			</a>
 	</div>

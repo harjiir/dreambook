@@ -24,7 +24,7 @@
 label{font-weight:bold; color:#715C8C;}
 
 /* Save and clear buttons in form */
-.btn.save, .btn.clear:hover{color:white; border:none; background-color:#715C8C;}
+.btn.save, .btn.clear:hover{color:white; border:none; background-color:#715C8C; margin-right:20px;}
 .btn.clear, .btn.save:hover{background-color:#EAE7FA; color:#715C8C; border:none;}
 
 /* Search bar */
@@ -43,7 +43,6 @@ label{font-weight:bold; color:#715C8C;}
 	border-radius:5px; 
 	padding: 4px 8px; 
 	margin-right:40px; 
-	background-color:#715C8C; 
 	color:white;}
 .editB{background-color:#A58CB3;}
 .deleteB{background-color:#715C8C;}

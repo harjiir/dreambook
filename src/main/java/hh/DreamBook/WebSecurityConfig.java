@@ -24,12 +24,15 @@ public class WebSecurityConfig {
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		// these endpoints don't need authentication
 		// Enable css files for styles
-		http.authorizeRequests().antMatchers("/css/**", "/index", "/types", "/keywords", "/api").permitAll()
-				.anyRequest().authenticated().and()
+		http.authorizeRequests().antMatchers("/css/**", "/index", "/typelist", "/keywordlist", "/dreams/**").permitAll()
+				.anyRequest().authenticated()
+
+				.and()
 				// when login is successful direct to /index endpoint
 				// when logout is successful direct to /login endpoint
-				.formLogin().loginPage("/login").defaultSuccessUrl("/index", true).permitAll().and().logout()
-				.logoutSuccessUrl("/login?logout").permitAll().and().httpBasic();
+				.formLogin().loginPage("/login").defaultSuccessUrl("/index", true).permitAll()
+
+				.and().logout().logoutSuccessUrl("/login?logout").permitAll().and().httpBasic();
 		return http.build();
 	}
 

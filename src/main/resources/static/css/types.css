@@ -19,3 +19,13 @@
 .card-deck{padding:20px; width:80%;}
 .card-body{background-color: #F8F8F8;}
 .card-title{color:#A58CB3; font-weight:bold;}
+.editB, .deleteB{
+	cursor:pointer; 
+	border:none; 
+	border-radius:5px; 
+	padding: 4px 8px; 
+	margin-right:40px; 
+	color:white;}
+.editB{background-color:#A58CB3;}
+.deleteB{background-color:#715C8C;}
+.editB:hover, .deleteB:hover{text-decoration:none; color:#333F63; background-color:#EAE7FA;}

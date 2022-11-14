@@ -21,7 +21,11 @@
 label{font-weight:bold; color:#333F63;}
 
 /* Save and clear buttons in form */
-.btn.save, .btn.clear:hover{color:white; border:none; background-color:#838BC2;}
+.btn.save, .btn.clear:hover{
+	margin-right:20px;
+	border:none; 
+	color:white; 
+	background-color:#838BC2;}
 .btn.clear, .btn.save:hover{background-color:#EAE7FA; color: #838BC2; border:none;}
 
 /* Search Bar */

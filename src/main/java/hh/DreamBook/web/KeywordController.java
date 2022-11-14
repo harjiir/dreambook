@@ -28,7 +28,7 @@ public class KeywordController {
 	private KeywordRepo kRepo;
 
 	// All Keywords
-	@GetMapping("/keywords")
+	@GetMapping("/keywordlist")
 	public String listKeywords(Model model) {
 		// All dreams are fetched from the database and added to the model attribute
 		model.addAttribute("keywords", kRepo.findAll());
@@ -54,7 +54,7 @@ public class KeywordController {
 			return "keywords";
 		} else {
 			kRepo.save(keyword);
-			return "redirect:keywords";
+			return "redirect:keywordlist";
 		}
 	}
 
@@ -64,7 +64,7 @@ public class KeywordController {
 	// @PathVariable extracts id from the URI
 	public String deleteKeyword(@PathVariable("dreamId") Long dreamId, Model model) {
 		kRepo.deleteById(dreamId);
-		return "redirect:../keywords"; // again redirect
+		return "redirect:../keywordlist"; // again redirect
 	}
 
 	// Edit Keyword
@@ -81,19 +81,19 @@ public class KeywordController {
 	// while MVC controller returns a view.
 
 	// REST All Keywords
-	@GetMapping("/keylist")
+	@GetMapping("/keywords")
 	public @ResponseBody List<Keyword> keyListRest() {
 		return (List<Keyword>) kRepo.findAll();
 	}
 
 	// REST Find Keyword by id
-	@GetMapping("/keylist/{keyId}")
+	@GetMapping("/keywords/{keyId}")
 	public @ResponseBody Optional<Keyword> findTypeRest(@PathVariable("keyId") Long keyId) {
 		return kRepo.findById(keyId);
 	}
 
 	// REST Save Keyword
-	@PostMapping("/keylist")
+	@PostMapping("/keywords")
 	public @ResponseBody Keyword saveTypeRest(@RequestBody Keyword keyword) {
 		return kRepo.save(keyword);
 	}

@@ -33,13 +33,13 @@
 	        <a class="nav-link" href="/index">Home</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="/types">Dream Types</a>
+	        <a class="nav-link" href="/typelist">Dream Types</a>
 	      </li>
 	      <li class="nav-item active">
-	        <a class="nav-link" href="/keywords">Keywords</a>
+	        <a class="nav-link" href="/keywordlist">Keywords</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="/dreams">Dreams</a>
+	        <a class="nav-link" href="/dreamlist">Dreams</a>
 	      </li>
 	    </ul>
 	    <p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
@@ -69,7 +69,7 @@
 					</div>
 					<div class="form-group col-md-5">
 						<label>Description</label>
-						<textarea class="form-control" id="keyDescription" required th:field="*{keyDescription}" rows="5" placeholder="Please describe the word..."></textarea>
+						<textarea class="form-control" id="keyDescription" required th:field="*{keyDescription}" rows="7" placeholder="Please describe the word..."></textarea>
 						<div class="valid-feedback">Valid</div>
     					<div class="invalid-feedback">Please describe the word.</div>
 					</div>

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* This CSS file contains editdream.html styles */
+/* This CSS file contains edittype.html styles */
 
 /* SignOut button */
 .btn.btn-secondary{margin:10px; color:white; border:none;}
@@ -16,7 +16,7 @@
 	background-color: #F8F8F8;
 	margin:50px;
 }
-.form-row{width:70%; align-items: center;}
+.form-row{width:600px; align-items: center;}
 .form-group{width:60%;}
 label{font-weight:bold; color:#715C8C; margin-top:20px;}
 
@@ -26,10 +26,12 @@ label{font-weight:bold; color:#715C8C; margin-top:20px;}
 	border:none; 
 	background-color:#715C8C; 
 	margin-right:20px;
+	margin-top:20px;
 }
 .btn.clear, .btn.cancel, .btn.save:hover{
 	background-color:#EAE7FA; 
 	color:#715C8C; 
 	border:none;
+	margin-top:20px;
 }
 .btn.cancel{margin-top:20px;}

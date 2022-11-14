@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>DreamBook - Sign In</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html; charset=UTF-8" />
+	<title>DreamBook - Edit</title>
 	
-	<link rel="stylesheet" href="/css/login.css" type="text/css">
+	<!-- My own css file -->
+	<link rel="stylesheet" href="/css/edittype.css" type="text/css">
 	
 	<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
@@ -20,7 +21,7 @@
 				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
 					crossorigin="anonymous"></script>
 </head>
-<body style="background-color:#D7D4DD;">
+<body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="/index">DreamBook</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,42 +38,35 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="/keywordlist">Keywords</a>
 	      </li>
-	      <li class="nav-item">
+	      <li class="nav-item active">
 	        <a class="nav-link" href="/dreamlist">Dreams</a>
 	      </li>
 	    </ul>
 	    <p class="role" th:inline="text" sec:authorize="isAuthenticated()">Signed In: <b>[[${#httpServletRequest.remoteUser}]]</b></p>
-	    <div class="signIn" sec:authorize="!isAuthenticated()">
-			<a href="/login" type="submit" class="btn btn-secondary signIn">Sign In</a>
-		</div>
 	    <div sec:authorize="isAuthenticated()">
-	      	<form th:action="@{/logout}" method="post">
+		    <form th:action="@{/logout}" method="post">
 				<button type="submit" class="btn btn-secondary signOut">Sign Out</button>
 			</form>
-		</div>
+	    </div>
 	  </div>
 	</nav>
-	<div class="content">
-		<form th:action="@{/login}" method="post" class="signInForm">
-			<div class="header"><h1>Please Sign In</h1></div>
-		    <div class="form-group">
-		      <label for="username">Username</label>
-		      <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-		    </div>
-		    <div class="form-group">
-		      <label for="password">Password</label>
-		      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-		    </div>
-		    <button type="submit" class="btn btn-primary signIn">Sign in</button>
-			<div class="invalidInput">
-				<div th:if="${param.error}">
-					<b>Invalid Sign In.</b> <br>Please check that your username and password are correct.
-				</div>
-				<div th:if="${param.logout}">
-					You have logged out.
-				</div>
+	<div class="float-child form">
+		<form th:object="${typeInEdit}" th:action="@{/savetype}" action="#" method="post" class="was-validated">
+			<div class="form-row">
+				<input type="hidden" class="form-control" th:field="*{typeId}" />
+				<label for="typeName">Name</label>
+				<input type="text" class="form-control" id="typeName" th:field="*{typeName}" />
 			</div>
+			<div class="form-row">
+				<label for="typeDescription">Description</label>
+				<textarea class="form-control" id="typeDescription" th:field="*{typeDescription}" rows="10" placeholder="Please describe the type..."></textarea>
+			</div>
+			<input type="submit" class="btn save" value="Save" />
+			<input type="reset" class="btn clear" value="Cancel changes"></input>
 		</form>
+			<a href="/typelist">
+				<button class="btn cancel">Go back to Types</button>
+			</a>
 	</div>
 </body>
 </html>

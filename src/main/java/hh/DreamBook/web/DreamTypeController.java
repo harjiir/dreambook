@@ -28,40 +28,23 @@ public class DreamTypeController {
 	private DreamTypeRepo dtRepo;
 
 	// DreamTypes page
-	@GetMapping("/types")
+	@GetMapping("/typelist")
 	public String listTypes(Model model) {
 		model.addAttribute("dreamTypes", dtRepo.findAll());
 		return "types"; // types.html
 	}
 
-	// Add DreamType
-	@PreAuthorize("hasAuthority('ADMIN')")
-	@GetMapping("/addtype")
-	public String addType(Model model) {
-		model.addAttribute("dreamType", new DreamType());
-		return "addtype"; // addtype.html
-	}
-
 	// Save DreamType
-	// Redirect to dreamtypes after adding a new DreamType with a form
+	// Redirect to typelist after adding a new DreamType with a form
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/savetype")
 	public String saveType(@Valid DreamType dreamType, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			return "dreamtypes";
+			return "types";
 		} else {
 			dtRepo.save(dreamType);
-			return "redirect:dreamtypes";
+			return "redirect:typelist";
 		}
-	}
-
-	// Delete DreamType, only ADMIN can do this
-	@PreAuthorize("hasAuthority('ADMIN')")
-	@GetMapping("/deletetype/{typeId}")
-	// @PathVariable extracts id from the URI
-	public String deleteType(@PathVariable("typeId") Long dreamId, Model model) {
-		dtRepo.deleteById(dreamId);
-		return "redirect:../dreamtypes"; // again redirect
 	}
 
 	// Edit DreamType, only ADMIN can do this
@@ -73,24 +56,33 @@ public class DreamTypeController {
 		return "edittype";
 	}
 
+	// Delete DreamType, only ADMIN can do this
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@GetMapping("/deletetype/{typeId}")
+	// @PathVariable extracts id from the URI
+	public String deleteType(@PathVariable("typeId") Long dreamId, Model model) {
+		dtRepo.deleteById(dreamId);
+		return "redirect:../typelist"; // again redirect
+	}
+
 	// RESTful services
 	// REST controller returns HTTP response body
 	// while MVC controller returns a view.
 
 	// REST All Types
-	@GetMapping("/typelist")
+	@GetMapping("/types")
 	public @ResponseBody List<DreamType> typeListRest() {
 		return (List<DreamType>) dtRepo.findAll();
 	}
 
 	// REST Find Type by id
-	@GetMapping("/typelist/{typeId}")
+	@GetMapping("/types/{typeId}")
 	public @ResponseBody Optional<DreamType> findTypeRest(@PathVariable("typeId") Long typeId) {
 		return dtRepo.findById(typeId);
 	}
 
 	// REST Save Type
-	@PostMapping("/typelist")
+	@PostMapping("/types")
 	public @ResponseBody DreamType saveTypeRest(@RequestBody DreamType dreamType) {
 		return dtRepo.save(dreamType);
 	}
