@@ -24,8 +24,10 @@ public class WebSecurityConfig {
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		// these endpoints don't need authentication
 		// Enable css files for styles
-		http.authorizeRequests().antMatchers("/css/**", "/index", "/typelist", "/keywordlist", "/dreams/**").permitAll()
-				.anyRequest().authenticated()
+		http.authorizeRequests()
+				.antMatchers("/", "/h2-console/**", "/css/**", "/index", "/typelist", "/keywordlist", "/dreams/**",
+						"/types/**", "/keywords/**")
+				.permitAll().anyRequest().authenticated()
 
 				.and()
 				// when login is successful direct to /index endpoint
