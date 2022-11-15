@@ -25,8 +25,8 @@ public class WebSecurityConfig {
 		// these endpoints don't need authentication
 		// Enable css files for styles
 		http.authorizeRequests()
-				.antMatchers("/", "/h2-console/**", "/css/**", "/index", "/typelist", "/keywordlist", "/dreams/**",
-						"/types/**", "/keywords/**")
+				.antMatchers("/", "/css/**", "/index", "/typelist", "/keywordlist", "/dreams/**", "/types/**",
+						"/keywords/**")
 				.permitAll().anyRequest().authenticated()
 
 				.and()
