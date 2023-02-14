@@ -63,15 +63,15 @@
 		For example, a dream may simultaneously include a current event, metaphor, problem-solving, and fantasy. 
 		Although dreams are often complicated and difficult to understand, even partial awareness and insight can be helpful.
 		</p>
-		<div class="card-deck" th:each="dreamType : ${dreamTypes}">
-		    <div class="card">
+	 	<div class="card-deck" th:each="dreamType : ${dreamTypes}">
+	    	<div class="card">
 			    <div class="card-body">
 			      <h5 class="card-title" th:text="${dreamType.typeName}"></h5>
 				    <p class="card-text" th:text="${dreamType.typeDescription}"></p>
 				    <a sec:authorize="hasAuthority('ADMIN')" class="editB" th:href="@{/edittype/{typeId}(typeId=${dreamType.typeId})}">EDIT</a>
 			    	<a sec:authorize="hasAuthority('ADMIN')" class="deleteB" th:href="@{/deletetype/{typeId}(typeId=${dreamType.typeId})}">X</a>
-			    </div>
-		    </div>
+		    	</div>
+	    	</div>
 		</div>
 	</div>
 </body>
